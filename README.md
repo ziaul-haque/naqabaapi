@@ -11,3 +11,9 @@ technology used:
   
   1. Get All Data (Yearwise)
   
+Follow the path setup API 
+https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-18-04
+
+Database server deployment
+https://tryolabs.com/blog/2012/06/25/connecting-sql-server-database-python-under-ubuntu/
+
