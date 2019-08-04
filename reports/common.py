@@ -20,43 +20,47 @@ def filter_dict_fields(my_dict, fields=None, trim_fields=None):
 
 
 def made_raw_sql_query(raw_sql):
-    cursor = db_con.cursor()
-    result = cursor.execute(raw_sql)
-
-    columns = [column[0] for column in cursor.description]
-
     response = []
-    for row in result:
-        response.append(dict(zip(columns, row)))
-
-    cursor.close()
+    with db_con.cursor() as cursor:
+        result = cursor.execute(raw_sql)
+        columns = [column[0] for column in cursor.description]
+        for row in result:
+            response.append(dict(zip(columns, row)))
     return response
 
 
-def args_to_string(args):
-    param_str = "'%s'"
-    param_number = "%s"
-    param_null = "NULL"
-
-    args = list(args)
-    result_str = ""
-    for idx, arg in enumerate(args):
-        if arg is None:
-            result_str += param_null
-        elif isinstance(arg, (str, 'utf-8')):
-            result_str += param_str % str(arg)
+def convert_immutable_dict_to_dict(immutable_dict):
+    mutable_dict = {}
+    for key, value in immutable_dict.items():
+        if value == "" or value == "None":
+            mutable_dict[key] = None
         else:
-            result_str += param_number % str(arg)
+            mutable_dict[key] = value
+    return mutable_dict
 
+
+def args_to_string(args):
+    param_null = "NULL"
+    kwargs = convert_immutable_dict_to_dict(args)
+    result_str = ""
+    idx = 0
+    for key, value in kwargs.items():
+        if key is None:
+            result_str += param_null
+        else:
+            result_str += str('@' + key + '=') + str(value)
+        # else:
+        #     result_str += str('@' + key + '=') + "'%s'" % str(value)
         if idx + 1 != len(args):
             result_str += ", "
+        idx = idx + 1
     return result_str
 
 
 def made_database_stored_procedure_query(stored_procedure_name, args,
                                          fields=None):
     try:
-        query = "CALL {sp_name}({sp_args})".format(
+        query = "EXEC {sp_name} {sp_args}".format(
             sp_name=stored_procedure_name,
             sp_args=args_to_string(args)
         )
