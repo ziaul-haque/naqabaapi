@@ -11,5 +11,6 @@ api = Api(api_bp)
 api.add_resource(Hello, '/')
 api.add_resource(Companies, '/companies')
 api.add_resource(Vehicles, '/vehicles')
+api.add_resource(Mosasa, '/mosasa')
 
 

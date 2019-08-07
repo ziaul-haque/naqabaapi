@@ -5,8 +5,7 @@ from reports.common import made_raw_sql_query, made_database_stored_procedure_qu
 
 class Companies(Resource):
     def get(self):
-        args = request.args
-        result = made_database_stored_procedure_query('sp_get_transport_companies', '')
+        result = made_database_stored_procedure_query('sp_get_transport_companies', [])
 
         if not result:
             return
@@ -18,6 +17,14 @@ class Vehicles(Resource):
     def get(self):
         args = request.args
         result = made_database_stored_procedure_query('sp_get_transport_vehicles', args)
+        if not result:
+            return
+        else:
+            return result
+
+class Mosasa(Resource):
+    def get(self):
+        result = made_database_stored_procedure_query('sp_get_active_mosasa', [])
         if not result:
             return
         else:
