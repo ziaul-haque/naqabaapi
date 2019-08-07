@@ -29,3 +29,13 @@ class Mosasa(Resource):
             return
         else:
             return result
+
+
+class Location(Resource):
+    def get(self):
+        args = request.args
+        result = made_database_stored_procedure_query('sp_get_vehicle_location', args)
+        if not result:
+            return
+        else:
+            return result
