@@ -1,3 +1,5 @@
+import json
+
 from Model import db_con
 
 __all__ = [
@@ -63,7 +65,7 @@ def made_database_stored_procedure_query(stored_procedure_name, args,
         )
         result = made_raw_sql_query(query)
     except Exception as e:
-        raise Exception("Error while calling stored procedure")
+        raise Exception("Error while calling stored procedure, message: " + str(e))
 
     # filter dict fields
     filtered_result = [filter_dict_fields(row, fields=fields) for row in
