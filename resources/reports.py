@@ -25,7 +25,7 @@ class Vehicles(Resource):
         result = made_database_stored_procedure_query('sp_get_transport_vehicles', args)
 
         json_obj = {'data': result}
-        json_response = json.dumps(json_obj, ensure_ascii=False)
+        json_response = json.dumps(json_obj, ensure_ascii=False).encode('utf8')
         response = Response(json_response, content_type="application/json; charset=utf-8")
 
         if not result:
