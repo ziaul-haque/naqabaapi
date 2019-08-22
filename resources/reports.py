@@ -1,5 +1,5 @@
 from flask_restful import Resource, request
-from flask import Response, jsonify, make_response
+from flask import Response
 
 import json
 
@@ -11,7 +11,8 @@ class Companies(Resource):
         result = made_database_stored_procedure_query('sp_get_transport_companies', [])
         json_obj = {'data': result}
         json_response = json.dumps(json_obj, ensure_ascii=False)
-        return Response(json_response, content_type="application/json; charset=utf-8")
+        uc_response = json_response.encode('utf-8')
+        return Response(uc_response, content_type="application/json; charset=utf-8", mimetype="application/json;")
 
 
 class Vehicles(Resource):
@@ -21,7 +22,8 @@ class Vehicles(Resource):
 
         json_obj = {'data': result}
         json_response = json.dumps(json_obj, ensure_ascii=False)
-        return make_response(json_response)
+        uc_response = json_response.encode('utf-8')
+        return Response(uc_response, content_type="application/json; charset=utf-8", mimetype="application/json;")
 
 
 class Mosasas(Resource):
@@ -41,9 +43,5 @@ class Locations(Resource):
 
         json_obj = {'data': result}
         json_response = json.dumps(json_obj, ensure_ascii=False)
-        response = Response(json_response, content_type="application/json; charset=utf-8")
-
-        if not result:
-            return
-        else:
-            return response
+        uc_response = json_response.encode('utf-8')
+        return Response(uc_response, content_type="application/json; charset=utf-8", mimetype="application/json;")
