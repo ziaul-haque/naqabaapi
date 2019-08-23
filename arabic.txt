@@ -1,0 +1,48 @@
+Day	اليوم
+Actual Pligrams	الحجاج الأساسين
+Schedule Pligrams	جدول الحجاج
+Time 	الوقت
+Distbatched 	ترحيل 
+Actual 	الوقت الحقيقي 
+Pligrams	الحجاج 
+Total Pligrams	مجموع الحجاج
+Left	يسار أو خروج
+Before Forbiden	قبل وقت الغروب
+During forbiden	خلال وقت الغروب 
+After Forbiden	بعد وقت الغروب
+Jamarat	الجمرات
+Number of Pligrams	عدد الحجاج
+Ground Floor	الطابق الأرضي
+First Floor	الطابق الأول
+Seccond Floor	الطابق الثاني
+Third Floor 	الطابق الثالث
+Fourth Floor	الطابق الرابع 
+Scheduled Roads	الطرق المجدولة
+Acrual Roads 	الطرق الأساسية
+Roads	الطرق
+Jamarats	الجمرات
+Anfaq Shabian (Shabain Tunnel )	أنفاق الشعبين
+Road 206	شارع 206
+Jadeed Road (New Road)	شارع الجديد
+Mushah Road 	طريق المشاة 
+Shaded South Rd	الطريق الجنوبي المظلل
+Filter	فرز أو تصفية 
+Maps	الخريطة
+Satelite	القمر الصناعي
+King Fahad RD	طريق الملك فهد
+Souq Al Arab RD	طريق سوق العرب
+South East Asia	جنوب شرق آسيا
+South Asia	جنوب آسيا
+African non Arabic Countries 	الدول الأفريقية غير العربية
+Arabic Countries	الدول العربية
+Turkey	تركيا
+Iran	إيران
+Internal Pligrams	حجاج الداخل
+Camps	المخيمات
+Offices	المكاتب
+Jamarat Bridge Ground Floor	جسر الجمرات الطابق الأرضي 
+Jamarat Bridge First Floor	جسر الجمرات الطابق الأول
+Jamarat Bridge SeccondFloor	جسر الجمرات الطابق الثاني
+Jamarat Bridge Third Floor	جسر الجمرات الطابق الثالث 
+Jamarat Bridge Fourth Floor	جسر الجمرات الطابق الرابع 
+Director	مدير
