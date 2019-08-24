@@ -27,7 +27,9 @@ def made_raw_sql_query(raw_sql):
         result = cursor.execute(raw_sql)
         columns = [column[0] for column in cursor.description]
         for row in result:
+            row[1]='الحجاج الأساسين'
             response.append(dict(zip(columns, row)))
+
     return response
 
 
