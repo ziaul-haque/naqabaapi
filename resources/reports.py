@@ -3,8 +3,16 @@ from flask import Response
 
 import json
 
-from reports.common import made_database_stored_procedure_query
+from reports.common import made_database_stored_procedure_query, made_raw_sql_query
 
+
+class Test(Resource):
+    def get(self):
+        result = made_raw_sql_query('select id, name from test;')
+        json_obj = {'data': result}
+        json_response = json.dumps(json_obj, ensure_ascii=False)
+        uc_response = json_response.encode('UTF-8')
+        return Response(uc_response)
 
 class Companies(Resource):
     def get(self):
