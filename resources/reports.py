@@ -8,7 +8,12 @@ from reports.common import made_database_stored_procedure_query
 
 class Companies(Resource):
     def get(self):
-        return made_database_stored_procedure_query('sp_get_transport_companies', [])
+        result= made_database_stored_procedure_query('sp_get_transport_companies', [])
+
+        json_obj = {'data': result}
+        json_response = json.dumps(json_obj, ensure_ascii=False)
+        uc_response = json_response.encode('UTF-16')
+        return Response(uc_response, content_type="application/json; charset=utf-16", mimetype="application/json;")
 
 
 class Vehicles(Resource):
@@ -18,8 +23,8 @@ class Vehicles(Resource):
 
         json_obj = {'data': result}
         json_response = json.dumps(json_obj, ensure_ascii=False)
-        uc_response = json_response.encode('utf-8')
-        return Response(uc_response, content_type="application/json; charset=utf-8", mimetype="application/json;")
+        uc_response = json_response.encode('UTF-16')
+        return Response(uc_response, content_type="application/json; charset=utf-16", mimetype="application/json;")
 
 
 class Mosasas(Resource):
@@ -28,7 +33,7 @@ class Mosasas(Resource):
 
         json_obj = {'data': result}
         json_response = json.dumps(json_obj, ensure_ascii=False)
-        uc_response = json_response.encode('utf-8')
+        uc_response = json_response.encode('UTF-16')
         return Response(uc_response, content_type="application/json; charset=utf-8", mimetype="application/json;")
 
 
