@@ -14,7 +14,6 @@ class Companies(Resource):
         uc_response = json_response.encode('UTF-8')
         return Response(uc_response)
 
-
 class Vehicles(Resource):
     def get(self):
         args = request.args
@@ -33,7 +32,7 @@ class Mosasas(Resource):
         json_obj = {'data': result}
         json_response = json.dumps(json_obj, ensure_ascii=False)
         uc_response = json_response.encode('UTF-8')
-        return Response(uc_response)
+        return Response(uc_response, content_type="application/json; charset=utf-8", mimetype="application/json;")
 
 
 class Locations(Resource):
@@ -44,4 +43,4 @@ class Locations(Resource):
         json_obj = {'data': result}
         json_response = json.dumps(json_obj, ensure_ascii=False)
         uc_response = json_response.encode('utf-8')
-        return Response(uc_response)
+        return Response(uc_response, content_type="application/json; charset=utf-8", mimetype="application/json;")
