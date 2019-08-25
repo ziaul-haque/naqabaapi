@@ -1,7 +1,5 @@
 from flask_restful import Resource, request
 from flask import Response
-from flask_api import status
-from logger import logger
 
 import json
 
@@ -19,28 +17,37 @@ class Test(Resource):
 
 class Companies(Resource):
     def get(self):
-        try:
-            result = made_database_stored_procedure_query('sp_get_transport_companies', [])
-            return result
-        except Exception as e:
-            logger.info('execution failed, ' + str(e))
+        result = made_database_stored_procedure_query('sp_get_transport_companies', [])
+        json_obj = {'companies': result}
+        json_response = json.dumps(json_obj, ensure_ascii=False)
+        uc_response = json_response.encode('UTF-8')
+        return Response(uc_response, content_type="application/json; charset=utf-8", mimetype="application/json;")
 
 
 class Vehicles(Resource):
     def get(self):
         args = request.args
         result = made_database_stored_procedure_query('sp_get_transport_vehicles', args)
-        return result
+        json_obj = {'vehicles': result}
+        json_response = json.dumps(json_obj, ensure_ascii=False)
+        uc_response = json_response.encode('UTF-8')
+        return Response(uc_response, content_type="application/json; charset=utf-8", mimetype="application/json;")
 
 
 class Mosasas(Resource):
     def get(self):
         result = made_database_stored_procedure_query('sp_get_active_mosasa', [])
-        return result
+        json_obj = {'mosasas': result}
+        json_response = json.dumps(json_obj, ensure_ascii=False)
+        uc_response = json_response.encode('UTF-8')
+        return Response(uc_response, content_type="application/json; charset=utf-8", mimetype="application/json;")
 
 
 class Locations(Resource):
     def get(self):
         args = request.args
         result = made_database_stored_procedure_query('sp_get_vehicle_location', args)
-        return result
+        json_obj = {'locations': result}
+        json_response = json.dumps(json_obj, ensure_ascii=False)
+        uc_response = json_response.encode('UTF-8')
+        return Response(uc_response, content_type="application/json; charset=utf-8", mimetype="application/json;")

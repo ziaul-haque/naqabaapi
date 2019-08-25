@@ -1,5 +1,4 @@
 import pyodbc
-from logger import logger
 
 driver = '{SQL Server}'
 # driver = '{ODBC Driver 17 for SQL Server}'
@@ -8,10 +7,7 @@ database = 'daif-avl-db'
 username = 'sa'
 password = 'Naqaba@password01'
 conn_string = 'Driver=' + driver + ';Server=' + server + ';Database=' + database + ';UID=' + username + ';PWD=' + password
-try:
-    db_con = pyodbc.connect(conn_string)
-except Exception as e:
-    logger.info('Database connection failed. ' + str(e))
+db_con = pyodbc.connect(conn_string)
 
 
 
