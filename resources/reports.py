@@ -1,6 +1,7 @@
 from flask_restful import Resource, request
 from flask import Response
 from flask_api import status
+from logger import logger
 
 import json
 
@@ -18,8 +19,11 @@ class Test(Resource):
 
 class Companies(Resource):
     def get(self):
-        result = made_database_stored_procedure_query('sp_get_transport_companies', [])
-        return result
+        try:
+            result = made_database_stored_procedure_query('sp_get_transport_companies', [])
+            return result
+        except Exception as e:
+            logger.info('execution failed, ' + str(e))
 
 
 class Vehicles(Resource):
