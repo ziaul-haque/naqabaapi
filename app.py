@@ -14,4 +14,5 @@ api.add_resource(Vehicles, '/vehicles')
 api.add_resource(Mosasas, '/mosasa')
 api.add_resource(Locations, '/locations')
 api.add_resource(Test, '/test')
+api.add_resource(Maktabs, '/maktabs')
 
