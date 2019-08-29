@@ -36,7 +36,7 @@ class Vehicles(Resource):
 
 class Mosasas(Resource):
     def get(self):
-        result = made_database_stored_procedure_query('sp_get_active_mosasas', [])
+        result = made_database_stored_procedure_query('sp_get_active_mosasa', [])
         json_obj = {'mosasas': result}
         json_response = json.dumps(json_obj, ensure_ascii=False)
         uc_response = json_response.encode('UTF-8')
