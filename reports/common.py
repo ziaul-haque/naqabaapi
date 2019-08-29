@@ -1,4 +1,4 @@
-import json
+
 
 from Model import db_con
 
@@ -48,9 +48,10 @@ def args_to_string(args):
     if len(args) > 0:
         kwargs = convert_immutable_dict_to_dict(args)
         for key, value in kwargs.items():
-            result_str += str('@' + key + '=') + str(value)
-            # else:
-            #     result_str += str('@' + key + '=') + "'%s'" % str(value)
+            if key.find('id') < 1:
+                result_str += str('@' + key + '=') + "'%s'" % value
+            else:
+                result_str += str('@' + key + '=') + value
             if idx + 1 != len(args):
                 result_str += ", "
             idx = idx + 1
