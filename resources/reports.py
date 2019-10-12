@@ -4,7 +4,7 @@ from Model import cache_db
 from utils import get_current_date_str, get_diff_day, get_datetime_obj_from_str
 import json
 from datetime import datetime, timedelta
-
+from casdb.data import get_bus_locations
 from reports.common import made_database_stored_procedure_query, made_raw_sql_query
 
 
@@ -89,22 +89,11 @@ class Maktabs(Resource):
 class Locations(Resource):
     def get(self):
         args = request.args
-        uc_cache_time = None
-        if len(args) == 0:
-            uc_response = cache_db.get("locations")
-            uc_cache_time = cache_db.get("locations_cache_time")
-
-        if uc_cache_time:
-            date_diff = get_diff_day(datetime.now(), get_datetime_obj_from_str(uc_cache_time.decode("utf-8")))
-
-        if not uc_cache_time or date_diff > 0:
-            result = made_database_stored_procedure_query('sp_get_vehicle_location', args)
-            json_obj = {'locations': result}
-            json_response = json.dumps(json_obj, ensure_ascii=False)
-            uc_response = json_response.encode('UTF-8')
-
-            if len(args) == 0:
-                cache_db.set("locations", uc_response)
-                cache_db.set("locations_cache_time", get_current_date_str())
-
+        if not args:
+            return Response('Please do not request huge data')
+        bus_id = args[0]
+        company_id = args[1]
+        start = args[2]
+        end=args[3]
+        uc_response = get_bus_locations(bus_id, company_id, start, end)
         return Response(uc_response, content_type="application/json; charset=utf-8", mimetype="application/json;")
