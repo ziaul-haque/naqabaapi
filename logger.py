@@ -3,7 +3,7 @@ from logging.handlers import RotatingFileHandler
 import os
 
 logger = logging.getLogger()
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.ERROR)
 
 FILE_PATH = os.getcwd() + '/api.log'
 fh = RotatingFileHandler(FILE_PATH, maxBytes=5242880, backupCount=500,
