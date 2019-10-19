@@ -18,7 +18,7 @@ while row:
     print(row[0])
     row = cursor.fetchone()
 
-cache_db = redis.StrictRedis(host="localhost", port=6379, db=0)
+cache_db = redis.StrictRedis(host="192.168.85.129", port=6379, db=0)
 
 
 
