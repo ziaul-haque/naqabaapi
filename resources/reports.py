@@ -89,9 +89,5 @@ class Maktabs(Resource):
 class Locations(Resource):
     def get(self):
         kwargs = convert_immutable_dict_to_dict(request.args)
-        # uc_response = get_bus_locations(kwargs['start_datetime'])
-        # start_date = kwargs['start_datetime']
-        # end_time = kwargs['end_datetime']
-
         uc_response = get_bus_locations(**kwargs)
         return Response(uc_response, content_type="application/json; charset=utf-8", mimetype="application/json;")
