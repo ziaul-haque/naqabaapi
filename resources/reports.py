@@ -5,7 +5,7 @@ from utils import get_current_date_str, get_diff_day, get_datetime_obj_from_str
 import json
 from datetime import datetime, timedelta
 from casdb.data import get_bus_locations
-from reports.common import made_database_stored_procedure_query, made_raw_sql_query
+from reports.common import made_database_stored_procedure_query, made_raw_sql_query, convert_immutable_dict_to_dict
 
 
 class Test(Resource):
@@ -88,12 +88,6 @@ class Maktabs(Resource):
 
 class Locations(Resource):
     def get(self):
-        args = request.args
-        if not args:
-            return Response('Please do not request huge data')
-        bus_id = args[0]
-        company_id = args[1]
-        start = args[2]
-        end=args[3]
-        uc_response = get_bus_locations(bus_id, company_id, start, end)
+        kwargs = convert_immutable_dict_to_dict(request.args)
+        uc_response = get_bus_locations(**kwargs)
         return Response(uc_response, content_type="application/json; charset=utf-8", mimetype="application/json;")

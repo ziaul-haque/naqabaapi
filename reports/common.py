@@ -4,7 +4,8 @@ from Model import db_con
 
 __all__ = [
     "made_raw_sql_query",
-    "made_database_stored_procedure_query"
+    "made_database_stored_procedure_query",
+    "convert_immutable_dict_to_dict"
 ]
 
 
