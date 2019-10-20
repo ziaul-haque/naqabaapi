@@ -1,5 +1,6 @@
 import pyodbc
 import redis
+from logger import logger
 
 driver = '{SQL Server}'
 # driver = '{ODBC Driver 17 for SQL Server}'
@@ -17,10 +18,11 @@ row = cursor.fetchone()
 while row:
     print(row[0])
     row = cursor.fetchone()
-
-cache_db = redis.StrictRedis(host="192.168.85.129", port=6379, db=0)
-
-
+try:
+    cache_db = redis.StrictRedis(host="localhost", port=6379, db=0)
+    logger.info("redis cache server connected")
+except Exception as e:
+    logger.error(e)
 
 
 
