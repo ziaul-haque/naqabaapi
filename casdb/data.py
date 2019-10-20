@@ -12,7 +12,7 @@ except Exception as e:
 
 
 def get_bus_locations(**kwrgs):
-    cql_query = 'select company_id, bus_id, bus_serial, ignition, movement, lat, long, speed ' \
+    cql_query = 'select lat, long, speed, cast(record_time as text) as rec_time ' \
                 'from vehicle_locations where bus_id=' + "'%s'" % kwrgs['bus_id'] + ' ALLOW FILTERING;'
     data = []
     raw_data = cas_db_session.execute(cql_query)
