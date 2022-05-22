@@ -17,3 +17,5 @@ https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications
 Database server deployment
 https://tryolabs.com/blog/2012/06/25/connecting-sql-server-database-python-under-ubuntu/
 
+Cassandra server dployment
+https://dzone.com/articles/cassandra-cluster-install-on-ubuntu-1804
